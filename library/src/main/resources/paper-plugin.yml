@@ -1,0 +1,5 @@
+name: PaperKt
+version: ${version}
+main: dev.eyrond.paperkt.PaperKt
+description: PaperKt Library
+api-version: 1.19

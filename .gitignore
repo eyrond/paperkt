@@ -1,0 +1,14 @@
+# Gradle
+.gradle
+build/
+run/
+!**/src/main/**/build/
+!**/src/test/**/build/
+!**/src/main/**/run/
+!**/src/test/**/run/
+
+# Intellij IDEA
+.idea/
+
+# MacOS
+.DS_Store
