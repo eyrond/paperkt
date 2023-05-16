@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     org.jetbrains.kotlin.jvm
+    `maven-publish`
 }
 
 repositories {
@@ -18,7 +19,14 @@ tasks {
         }
     }
 
-    withType<JavaCompile>() {
+    withType<JavaCompile> {
         targetCompatibility = "17"
+    }
+}
+
+publishing {
+    publications.register<MavenPublication>(project.name) {
+        from(components["java"])
+        artifact(tasks.kotlinSourcesJar)
     }
 }

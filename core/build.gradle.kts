@@ -1,5 +1,6 @@
 plugins {
     module
+    `published-module`
 }
 
 description = "PaperKt core to bundle in plugins."
