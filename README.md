@@ -17,7 +17,4 @@ And more modules that will come later in the future:
 - [Config](config) — a module containing a simple and elegant yet rich API for configuration files.
 - [Database](database) — a module containing a simple and elegant yet rich API for databases.
 
-## Features
-
-- Coroutines Support
-- Modularity
+Go to the respective module's page to learn more about it.
