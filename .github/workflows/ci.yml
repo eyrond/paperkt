@@ -26,7 +26,7 @@ jobs:
           distribution: temurin
           java-version: 17
       - name: Build with Gradle
-        uses: gradle/gradle-build-actions@v2
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: --stacktrace --info build
   release:
@@ -50,10 +50,10 @@ jobs:
           distribution: temurin
           java-version: 17
       - name: Build with Gradle
-        uses: gradle/gradle-build-actions@v2
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: --info build
       - name: Publish with Gradle
-        uses: gradle/gradle-build-actions@v2
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: -x test publish
