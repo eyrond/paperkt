@@ -25,5 +25,7 @@ Your contributions are welcome!
 
 ## Quick Start
 
+Clone the [plugin template](https://github.com/eyrond/paperkt-template) repository for a quick start.
+
 Refer to the respective module for further information, or take a look at
 the [Wiki](https://github.com/eyrond/paperkt/wiki).
