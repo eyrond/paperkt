@@ -1,14 +1,24 @@
 import java.lang.System.getenv
-import java.util.*
 
 plugins {
     `maven-publish`
     signing
 }
 
+
+fun MavenPublication.registerDokkaJar() {
+    tasks.register<Jar>("${name}DokkaJar") {
+        archiveClassifier.set("javadoc")
+        destinationDirectory.set(destinationDirectory.get().dir(name))
+        from(tasks.named("dokkaHtml"))
+    }
+}
+
 publishing {
     publications {
         withType<MavenPublication>().configureEach {
+            artifact(registerDokkaJar())
+
             groupId = "dev.eyrond.paperkt"
             artifactId = project.name
             version = moduleVersion

@@ -4,6 +4,7 @@ kotlin = "1.8.21"
 kotlinx-coroutines = "1.7.1"
 paper-api = "1.19.4-R0.1-SNAPSHOT"
 kotlin-logging = "3.0.5"
+dokka = "1.8.10"
 
 [libraries]
 
@@ -16,5 +17,6 @@ kotlin-logging = { module = "io.github.microutils:kotlin-logging-jvm", version.r
 paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper-api" }
 
 # These are plugins, but used as dependencies in buildSrc.
+dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 kotlin-jvm-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
