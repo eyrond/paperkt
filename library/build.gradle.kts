@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    api(libs.paper.api)
+    compileOnly(libs.paper.api)
     api(project(":core"))
 }
 
@@ -18,15 +18,8 @@ tasks {
         archiveFileName.set("paperkt-library-${version}.jar")
 
         dependencyFilter.apply {
-            fun ResolvedDependency.isDerivedFrom(name: String): Boolean {
-                return parents.any { it.moduleName == name || it.isDerivedFrom(name) }
-            }
-
             // Exclude all the dependencies that are already provided by Paper.
             exclude(dependency("org.jetbrains:annotations"))
-            exclude {
-                it.moduleGroup == "io.papermc.paper" && it.moduleName == "paper-api" || it.isDerivedFrom("paper-api")
-            }
         }
     }
 }
