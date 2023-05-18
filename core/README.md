@@ -6,6 +6,7 @@ You can bundle it into your plugins, or depend on the [Library](../library) plug
 ## Quick Start
 
 First of all, add the core to your project dependencies.
+Use the latest version, or `main-SNAPSHOT` for the snapshot version.
 
 ### Bundle with your plugin
 
