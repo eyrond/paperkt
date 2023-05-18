@@ -5,19 +5,16 @@ plugins {
     signing
 }
 
-
-fun MavenPublication.registerDokkaJar() {
-    tasks.register<Jar>("${name}DokkaJar") {
-        archiveClassifier.set("javadoc")
-        destinationDirectory.set(destinationDirectory.get().dir(name))
-        from(tasks.named("dokkaHtml"))
-    }
-}
-
 publishing {
     publications {
         withType<MavenPublication>().configureEach {
-            artifact(registerDokkaJar())
+            artifact(
+                tasks.register<Jar>("${name}DokkaJar") {
+                    archiveClassifier.set("javadoc")
+                    destinationDirectory.set(destinationDirectory.get().dir(name))
+                    from(tasks.named("dokkaHtml"))
+                }
+            )
 
             groupId = "dev.eyrond.paperkt"
             artifactId = project.name

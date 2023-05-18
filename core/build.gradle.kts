@@ -1,9 +1,9 @@
+description = "PaperKt core to bundle in plugins."
+
 plugins {
     module
     `published-module`
 }
-
-description = "PaperKt core to bundle in plugins."
 
 dependencies {
     api(libs.kotlin.coroutines)

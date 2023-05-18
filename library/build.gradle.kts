@@ -1,10 +1,10 @@
+description = "PaperKt library that bundles all the modules."
+
 plugins {
     module
     `published-module`
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
-
-description = "PaperKt library that bundles all the modules."
 
 dependencies {
     api(libs.paper.api)
