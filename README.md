@@ -1,5 +1,7 @@
 # PaperKt — an elegant API for Kotlin plugins development targeting Paper.
 
+<img width="128px" height="128px" src=".github/assets/icon.png">
+
 The goal of this project is to provide a simple and elegant API for Kotlin plugins development targeting Paper, so that
 it is as easy to develop fully featured Kotlin plugins as it is with Java plugins.
 
