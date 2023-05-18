@@ -68,9 +68,11 @@ publishing {
 
 if (isRelease) {
     signing {
-        val secretKey = String(Base64.getDecoder().decode(getenv("SIGNING_KEY")))
-        val password = getenv("SIGNING_PASSWORD")
-        useInMemoryPgpKeys(secretKey, password)
+        val secretKey = findProperty("signingKey")?.toString()
+        val password = findProperty("signingPassword")?.toString()
+        if (secretKey != null && password != null) {
+            useInMemoryPgpKeys(secretKey, password)
+        }
         sign(publishing.publications)
     }
 }
