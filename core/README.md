@@ -1,5 +1,7 @@
 # PaperKt Core
 
+![Maven Central Badge](https://img.shields.io/maven-central/v/dev.eyrond.paperkt/core)
+
 This is the core module of PaperKt that contains only the core components required for plugin development using Kotlin.
 You can bundle it into your plugins, or depend on the [Library](../library) plugin which already bundles it.
 
