@@ -15,6 +15,8 @@ tasks {
     }
 
     shadowJar {
+        archiveFileName.set("paperkt-library-${version}.jar")
+
         dependencyFilter.apply {
             fun ResolvedDependency.isDerivedFrom(name: String): Boolean {
                 return parents.any { it.moduleName == name || it.isDerivedFrom(name) }
