@@ -1,5 +1,3 @@
-description = "PaperKt library that bundles all the modules."
-
 plugins {
     module
     `published-module`

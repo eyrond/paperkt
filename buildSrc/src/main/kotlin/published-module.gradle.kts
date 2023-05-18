@@ -22,7 +22,7 @@ publishing {
 
             pom {
                 name.set(project.name)
-                description.set(project.description)
+                description.set("Simple and elegant api for Kotlin plugin development for Paper.")
                 url.set("https://github.com/eyrond/paperkt")
 
                 developers {
