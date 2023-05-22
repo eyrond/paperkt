@@ -23,7 +23,12 @@ tasks {
     }
 
     withType<JavaCompile> {
+        options.encoding = Charsets.UTF_8.name()
         targetCompatibility = "17"
+    }
+
+    processResources {
+        filteringCharset = Charsets.UTF_8.name()
     }
 
     withType<AbstractDokkaLeafTask> {

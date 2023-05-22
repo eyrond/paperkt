@@ -2,6 +2,7 @@ import java.lang.System.getenv
 
 plugins {
     `maven-publish`
+    `java-library`
     signing
 }
 
