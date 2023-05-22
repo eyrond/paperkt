@@ -1,6 +1,7 @@
 plugins {
     module
     `published-module`
+    id("io.papermc.paperweight.userdev") version "1.5.5"
 }
 
 dependencies {
@@ -9,7 +10,7 @@ dependencies {
         // Provided by Paper.
         exclude(group = "org.slf4j", module = "slf4j-api")
     }
-    compileOnly(libs.paper.api)
+    paperweight.paperDevBundle(libs.versions.paper.api.get())
     api(kotlin("reflect"))
 }
 

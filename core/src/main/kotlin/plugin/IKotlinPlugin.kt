@@ -1,5 +1,6 @@
 package dev.eyrond.paperkt.plugin
 
+import dev.eyrond.paperkt.brigadier.Brigadier
 import kotlinx.coroutines.CoroutineScope
 import mu.KLogger
 import org.bukkit.plugin.Plugin
@@ -46,6 +47,11 @@ interface IKotlinPlugin : Plugin {
      * Kotlin logger for your plugin.
      */
     val log: KLogger
+
+    /**
+     * Brigadier proxy for your plugin.
+     */
+    val brigadier: Brigadier
 
     /**
      * This method is called once your plugin is loaded.
