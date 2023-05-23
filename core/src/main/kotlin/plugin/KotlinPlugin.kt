@@ -1,7 +1,5 @@
 package dev.eyrond.paperkt.plugin
 
-import dev.eyrond.paperkt.brigadier.Brigadier
-import dev.eyrond.paperkt.brigadier.BukkitBrigadier
 import dev.eyrond.paperkt.coroutines.AsyncPluginCoroutineDispatcher
 import dev.eyrond.paperkt.coroutines.PluginCoroutineDispatcher
 import dev.eyrond.paperkt.coroutines.PluginCoroutineSynchronizer
@@ -29,7 +27,6 @@ abstract class KotlinPlugin : JavaPlugin(), IKotlinPlugin {
     final override val asyncCoroutineContext: CoroutineContext by lazy { createContext("async", asyncDispatcher) }
     final override val asyncCoroutineScope: CoroutineScope by lazy { CoroutineScope(asyncCoroutineContext) }
     final override val log: KLogger = slF4JLogger.toKLogger()
-    final override val brigadier: Brigadier by lazy { BukkitBrigadier(this) }
 
     final override fun reloadConfig() {
         synchronizer.run { loadConfig() }

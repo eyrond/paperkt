@@ -15,7 +15,6 @@ kotlin-logging = { module = "io.github.microutils:kotlin-logging-jvm", version.r
 
 # Paper
 paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper-api" }
-paper-mojangapi = { module = "io.papermc.paper:paper-mojangapi", version.ref = "paper-api" }
 
 # These are plugins, but used as dependencies in buildSrc.
 dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }

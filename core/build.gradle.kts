@@ -10,7 +10,6 @@ dependencies {
         exclude(group = "org.slf4j", module = "slf4j-api")
     }
     compileOnly(libs.paper.api)
-    compileOnly(libs.paper.mojangapi)
     api(kotlin("reflect"))
 }
 
