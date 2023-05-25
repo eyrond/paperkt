@@ -1,6 +1,6 @@
 # PaperKt — an elegant API for Kotlin plugins development targeting Paper.
 
-<img width="128px" height="128px" src=".github/assets/icon.png">
+![Maven Central Badge](https://img.shields.io/maven-central/v/dev.eyrond.paperkt/core)
 
 The goal of this project is to provide a simple and elegant API for Kotlin plugins development targeting Paper, so that
 it is as easy to develop fully featured Kotlin plugins as it is with Java plugins.
