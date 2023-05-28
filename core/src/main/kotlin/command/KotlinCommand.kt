@@ -111,7 +111,7 @@ abstract class KotlinCommand(
     fun register(): Boolean {
         val isSuccessful = server.commandMap.register(plugin.name, this)
         if (isSuccessful) {
-            server.onlinePlayers.forEach { it.updateCommands() }
+            updateCommandsForPlayers()
         }
         return isSuccessful
     }
@@ -124,6 +124,12 @@ abstract class KotlinCommand(
         val simpleCommandMap = server.commandMap as? SimpleCommandMap ?: return false
         val knownCommands = simpleCommandMap.knownCommands
         val keysForRemoval = knownCommands.filterValues { it === this }.keys
-        return knownCommands.keys.removeAll(keysForRemoval)
+        val result = knownCommands.keys.removeAll(keysForRemoval)
+        updateCommandsForPlayers()
+        return result
+    }
+
+    protected fun updateCommandsForPlayers() {
+        server.onlinePlayers.forEach { it.updateCommands() }
     }
 }
