@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "dev.eyrond"
-version = "1.0.0"
+version = "1.0.1"
 
 subprojects {
     group = "${rootProject.group}.paperkt"
