@@ -14,6 +14,7 @@ internal class PluginCoroutineDispatcher(
     private val server get() = plugin.server
 
     override fun scheduleResumeAfterDelay(timeMillis: Long, continuation: CancellableContinuation<Unit>) {
+        synchronizer.unblockIfNeeded()
         val task = server.scheduler.runTaskLater(
             plugin,
             Runnable { continuation.apply { resumeUndispatched(Unit) } },
