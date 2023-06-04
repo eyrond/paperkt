@@ -25,7 +25,7 @@ internal class PluginCoroutineSynchronizer(val plugin: IKotlinPlugin) {
 
     fun run(block: suspend CoroutineScope.() -> Unit) {
         isEnabled = true
-        val result = runBlocking {
+        val result = runBlocking(context = plugin.coroutineContext) {
             runCatching { block() }
         }
         isEnabled = false

@@ -47,7 +47,7 @@ abstract class KotlinPlugin : JavaPlugin(), IKotlinPlugin {
 
     final override fun onDisable() {
         try {
-            runBlocking { onDisabled() }
+            runBlocking(context = coroutineContext) { onDisabled() }
         } finally {
             val cancellationException = CancellationException("Stopping the plugin.")
             dispatcher.cancelChildren(cancellationException)
