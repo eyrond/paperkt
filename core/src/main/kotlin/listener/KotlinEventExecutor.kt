@@ -18,7 +18,7 @@ internal class KotlinEventExecutor(
 ) : EventExecutor {
 
     override fun execute(listener: Listener, event: Event) {
-        if (!eventClass::class.isSuperclassOf(event::class)) return
+        if (!eventClass.isSuperclassOf(event::class)) return
         runCatching {
             if (function.isSuspend) {
                 plugin.coroutineScope.launch(start = CoroutineStart.UNDISPATCHED) {
