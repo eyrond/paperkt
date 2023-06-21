@@ -84,8 +84,8 @@ private fun logWarnInvalidListenerMethod(function: KFunction<*>, plugin: IKotlin
 
 private fun KClass<*>.logWarnIfDeprecated(function: KFunction<*>, plugin: IKotlinPlugin) {
     if (!isSubclassOf(Event::class)) return
-    if (findAnnotation<Deprecated>() == null) superclasses.forEach { it.logWarnIfDeprecated(function, plugin) }
-    val warning = findAnnotation<Warning>() ?: return
+    if (findJavaAnnotation<Deprecated>() == null) superclasses.forEach { it.logWarnIfDeprecated(function, plugin) }
+    val warning = findJavaAnnotation<Warning>() ?: return
     if (!plugin.server.warningState.printFor(warning)) return
     plugin.log.warn(AuthorNagException(null)) {
         """
@@ -94,6 +94,8 @@ private fun KClass<*>.logWarnIfDeprecated(function: KFunction<*>, plugin: IKotli
         """
     }
 }
+
+private inline fun <reified T : Annotation> KClass<*>.findJavaAnnotation(): T? = java.getAnnotation(T::class.java)
 
 private fun findHandlerListForEvent(event: KClass<out Event>): HandlerList {
     val registrationClass = findRegistrationClass(event)
