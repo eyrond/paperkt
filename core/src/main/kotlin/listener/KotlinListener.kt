@@ -83,7 +83,7 @@ private fun logWarnInvalidListenerMethod(function: KFunction<*>, plugin: IKotlin
 }
 
 private fun KClass<*>.logWarnIfDeprecated(function: KFunction<*>, plugin: IKotlinPlugin) {
-    if (!isSubclassOf(Event::class)) return
+    if (!Event::class.java.isAssignableFrom(java)) return
     if (findJavaAnnotation<Deprecated>() == null) superclasses.forEach { it.logWarnIfDeprecated(function, plugin) }
     val warning = findJavaAnnotation<Warning>() ?: return
     if (!plugin.server.warningState.printFor(warning)) return
