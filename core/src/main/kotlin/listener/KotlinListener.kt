@@ -14,7 +14,6 @@ import java.lang.Deprecated
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
 import kotlin.reflect.full.*
-import kotlin.reflect.jvm.isAccessible
 import kotlin.reflect.jvm.javaType
 
 /**
@@ -84,7 +83,9 @@ private fun logWarnInvalidListenerMethod(function: KFunction<*>, plugin: IKotlin
 
 private fun KClass<*>.logWarnIfDeprecated(function: KFunction<*>, plugin: IKotlinPlugin) {
     if (!Event::class.java.isAssignableFrom(java)) return
-    if (findJavaAnnotation<Deprecated>() == null) { java.superclass?.kotlin?.logWarnIfDeprecated(function, plugin) }
+    if (findJavaAnnotation<Deprecated>() == null) {
+        java.superclass?.kotlin?.logWarnIfDeprecated(function, plugin)
+    }
     val warning = findJavaAnnotation<Warning>() ?: return
     if (!plugin.server.warningState.printFor(warning)) return
     plugin.log.warn(AuthorNagException(null)) {
@@ -98,18 +99,20 @@ private fun KClass<*>.logWarnIfDeprecated(function: KFunction<*>, plugin: IKotli
 private inline fun <reified T : Annotation> KClass<*>.findJavaAnnotation(): T? = java.getAnnotation(T::class.java)
 
 private fun findHandlerListForEvent(event: KClass<out Event>): HandlerList {
-    val registrationClass = findRegistrationClass(event)
-    val function = registrationClass.declaredFunctions.find { it.name == "getHandlerList" }!!
-    function.isAccessible = true
-    return function.call() as HandlerList
+    val registrationClass = findRegistrationClass(event).java
+    val method = registrationClass.declaredMethods.find { it.name == "getHandlerList" }!!
+    method.isAccessible = true
+    return method.invoke(null) as HandlerList
 }
 
 @Suppress("UNCHECKED_CAST")
 private fun findRegistrationClass(kClass: KClass<out Event>): KClass<out Event> {
-    val handlerListFunction = kClass.declaredFunctions.find { it.name == "getHandlerList" }
+    val javaClass = kClass.java
+    val handlerListFunction = javaClass.declaredMethods.find { it.name == "getHandlerList" }
     if (handlerListFunction != null) return kClass
-    kClass.superclasses.filter { it.isSubclassOf(Event::class) }.forEach {
-        return findRegistrationClass(it as KClass<out Event>)
+    val superclass = javaClass.superclass
+    if (Event::class.java.isAssignableFrom(superclass)) {
+        return findRegistrationClass(superclass!!.kotlin as KClass<out Event>)
     }
     error("Unable to find handler list for event ${kClass.qualifiedName}. Static function getHandlers is required!")
 }

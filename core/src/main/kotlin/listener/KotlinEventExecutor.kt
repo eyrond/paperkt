@@ -9,7 +9,6 @@ import org.bukkit.plugin.EventExecutor
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
 import kotlin.reflect.full.callSuspend
-import kotlin.reflect.full.isSuperclassOf
 
 internal class KotlinEventExecutor(
     private val eventClass: KClass<out Event>,
@@ -18,7 +17,7 @@ internal class KotlinEventExecutor(
 ) : EventExecutor {
 
     override fun execute(listener: Listener, event: Event) {
-        if (!eventClass.isSuperclassOf(event::class)) return
+        if (!eventClass.java.isAssignableFrom(event::class.java)) return
         runCatching {
             if (function.isSuspend) {
                 plugin.coroutineScope.launch(start = CoroutineStart.UNDISPATCHED) {
